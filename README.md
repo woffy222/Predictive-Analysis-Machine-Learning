@@ -37,8 +37,27 @@ Date - Tanggal Observasi data
 ##### Note
 PLU merupakan Price look-up nomor berisi 4-5 digit untuk mengidentifikasian suatu produk, berguna untuk memudahkan proses check-out dan juga memudahkan inventory control.
 
-![readdataset](https://user-images.githubusercontent.com/118952537/204123039-444a1317-cc1d-448b-b80e-75bd6e7ac33e.png)
-![info](https://user-images.githubusercontent.com/118952537/204123147-4a7e8a06-ecb0-4311-b0d3-d2fda0b310ed.png)
+| #  | Column       | Non-Null Count | Dtype          |
+|----|--------------|----------------|----------------|
+| 1  | Date         | 18249 non-null | datetime64[ns] |
+| 2  | AveragePrice | 18249 non-null | float64        |
+| 3  | Total Volume | 18249 non-null | float64        |
+| 4  | 4046         | 18249 non-null | float64        |
+| 5  | 4225         | 18249 non-null | float64        |
+| 6  | 4770         | 18249 non-null | float64        |
+| 7  | Total Bags   | 18249 non-null | float64        |
+| 8  | Small Bags   | 18249 non-null | float64        |
+| 9  | Large Bags   | 18249 non-null | float64        |
+| 10 | XLarge Bags  | 18249 non-null | float64        |
+| 11 | type         | 18249 non-null | object         |
+| 12 | year         | 18249 non-null | int64          |
+| 13 | region       | 18249 non-null | object         |
+
+|      | AveragePrice |
+|------|--------------|
+| min  | 0.440000     |
+| max  | 3.250000     |
+| mean | 1.405978     |
 
 #### Hasil analisis
 - Sampel data berisi 18249 kolom dan 12 baris
@@ -51,21 +70,27 @@ Grafik distribusi
 
 ![grafik distribusi](https://user-images.githubusercontent.com/118952537/204123329-94350848-9800-493a-acd8-c60f1aef98ec.png)
 
+pada grafik diatas akan membuat kisi sumbu sedemikian rupa sehingga setiap variabel numerik dalam data akan dibagikan ke seluruh sumbu y di satu baris dan sumbu x di satu kolom. Plot diagonal diperlakukan berbeda: plot distribusi univariat digambar untuk menunjukkan distribusi marjinal data di setiap kolom.
 
-Korelasi Matrix
+Visualisasi Korelasi Matrix
 
 ![korelasi matix](https://user-images.githubusercontent.com/118952537/204123355-c865c45b-b0c9-4adf-a332-06ad0875fc44.png)
+pada gambar diatas dapat dilihat bahwa setiap elemen mempunyai nilai korelasi yang berbeda. semakin tinggi nilai korelasi (mendekati 1) maka hubungan antara kedua variabel sangat kuat atau jika nilainya 1 maka variabel tersebut sama. Ketika hubungannya semakin erat maka warna akan semakin merah. sebaliknya apabila nilai korelasi (tidak mendekati 1) dan berwarna biru maka kedua variabel tidak saling berhubungan.
 
 ## Data Preparation
  Teknik data preparation yang digunakan adalah: 
  - MinMaxScaller() dimana ketika menggunakan teknik ini kita harus menghilangkan kolum yang bernilai data type object. merupakan proses scalling yang fungsinya data numeric akan tahan terhadap pencilan data / outliers. MinMaxScaller ini mentransformasi / mengubah data numeric menjadi data numeric yang memiliki rentang 0 - 1
- - TrainTestSplit() untuk membagi dataset menjadi data latih (train) dan data uji (test) merupakan hal yang harus dilakukan sebelum membuat model. Mempertahankan sebagian data yang ada untuk menguji seberapa baik generalisasi model terhadap data baru.
+ - TrainTestSplit() untuk membagi dataset menjadi data latih (train) dan data uji (test) merupakan hal yang harus dilakukan sebelum membuat model. Mempertahankan sebagian data yang ada untuk menguji seberapa baik generalisasi model terhadap data baru. nilai yang digunakan untuk test adalah 0.2 atau 20% sehingga nilai yang digunakan untuk train adalah 0.8 atau 80% sehingga perbandingan rasio train/test adalah 80:20.
 ## Modeling
 
 Pada tahap ini mengembangkan model machine learning dengan lima algoritma, yakni XGBoost, K-Nearest Neighbor, Random Forest, Gradient Boosting, LightGBM. Langkah selanjutnya yakni mengevaluasi performa masing-masing algoritma dan menentukan algoritma mana yang memberikan hasil prediksi terbaik. Langkah pertama dalam proses modeling yakni menyiapkan sebuah DataFrame baru untuk menampung berapa nilai mae-nya yang berfungsi pada proses analisis model.
-![korelasi matix](https://user-images.githubusercontent.com/118952537/204123834-0976dd91-b998-473f-be4d-da716c8ba051.png)
- 
+
  #### Random Forest (RF)
+Random Forest = Random Forest dapat digunakan sebagai regresi dengan memperluas 'tree' sepenuhnya sehingga setiap daun memiliki tepat satu nilai. Breiman menyarankan untuk membuat regresi random forest dengan cara memperluas pohon secara acak. Kemudian sebuah prediksi secara sederhana mengembalikan variabel respon individual dari distribusi dapat dibangun jika 'forest' cukup besar. Satu peringatan bahwa perkembangan 'tree' sepenuhnya dapat menutupi atau melebihi kapasitas: jika itu terjadi, intervalnya akan sia-sia, seperti prediksi. Hal yang diharapkan adalah sama seperti akurasi dan presisi.
+- n_estimators — jumlah pohon keputusan yang akan Anda jalankan dalam model
+- max_depth — ini mengatur kedalaman maksimum yang mungkin dari setiap pohon
+- n_jobs — jumlah tugas yang akan dijalankan secara paralel. -1 berarti menggunakan semua prosesor
+- random_state  — yang merupakan random number generator
  ##### Keuntungan 
  - RF dapat menyelesaikan kedua jenis masalah yaitu klasifikasi dan regresi dan melakukan estimasi yang layak di kedua sisi.
  - Memiliki metode yang efektif untuk memperkirakan data yang hilang dan menjaga akurasi ketika sebagian besar data hilang.
@@ -73,12 +98,14 @@ Pada tahap ini mengembangkan model machine learning dengan lima algoritma, yakni
  - seperti pendekatan kotak hitam untuk pemodel statistik, kami hanya memiliki sedikit kendali atas apa yang dilakukan model tersebut.
  
  #### XGBoost
+XGBoostadalah implementasi sumber terbuka yang populer dan efisien dari algoritma pohon yang ditingkatkan gradien. Peningkatan gradien adalah algoritma pembelajaran yang diawasi, yang mencoba memprediksi variabel target secara akurat dengan menggabungkan perkiraan serangkaian model yang lebih sederhana dan lebih lemah. Saat menggunakangradien meningkatkanuntuk regresi, peserta didik yang lemah adalah pohon regresi, dan setiap pohon regresi memetakan titik data input ke salah satu daunnya yang berisi skor berkelanjutan. XGBoost meminimalkan fungsi obyektif yang diatur (L1 dan L2) yang menggabungkan fungsi kehilangan cembung (berdasarkan perbedaan antara output yang diprediksi dan target) dan istilah penalti untuk kompleksitas model (dengan kata lain, fungsi pohon regresi).
  ##### Keuntungan
  - Efektif dengan kumpulan data besar. Algoritme pohon seperti XGBoost dan Random Forest tidak memerlukan fitur yang dinormalisasi dan bekerja dengan baik jika datanya nonlinier, nonmonotonik, atau dengan kluster terpisah.
  ##### Kekurangan
  - Tidak bekerja dengan baik apabila data tidak terstruktur
  
  #### LGBM
+LightGBM mengimplementasikan algoritma Gradient Boosting Decision Tree (GBDT) konvensional dengan penambahan dua teknik baru: Pengambilan Sampel Satu Sisi Berbasis Gradien (GOSS) dan Bundling Fitur Eksklusif (EFB). Teknik-teknik ini dirancang untuk secara signifikan meningkatkan efisiensi dan skalabilitas GBDT. Algoritma LightGBM berkinerja baik dalam kompetisi Machine Learning karena penanganannya yang kuat dari berbagai jenis data, hubungan, distribusi, dan keragaman hyperparameter yang dapat  disempurnakan.
  ##### Keuntungan
  - Kecepatan latihan lebih cepat dan efisiensi lebih tinggi
  - Menggunakan memori yang relatif kecil
@@ -86,18 +113,33 @@ Pada tahap ini mengembangkan model machine learning dengan lima algoritma, yakni
  - Light GBM peka terhadap overfitting dan karenanya dapat dengan mudah membuat data kecil overfitting
  
 #### KNN
+KNN bekerja berdasarkan prinsip bahwa setiap titik data yang berdekatan satu sama lain akan berada di kelas yang sama. Dengan kata lain, KNN mengklasifikasikan titik data baru berdasarkan kemiripan.
+ - n_neighbors — jumlah tetangga untuk digunakan secara default untuk kueri k tetangga.
 ##### Keuntungan
 - Pemodelan KNN tidak termasuk periode pelatihan karena data itu sendiri adalah model yang akan menjadi acuan untuk prediksi masa depan dan karenanya sangat efisien waktu dalam hal improvisasi untuk pemodelan acak pada data yang tersedia.
 ##### kekurangan 
 - Tidak bekerja dengan baik dengan kumpulan data besar.
 
 #### Gradient Boosting
+cara kerja algoritma gradient boost adalah membangun satu tree untuk menyesuaikan data, lalu tree berikutnya dibangun untuk mengurangi residual (error).
 ##### Keuntungan
 - dapat mengoptimalkan berbagai fungsi kerugian dan menyediakan beberapa opsi penyetelan parameter hiper yang membuat fungsi tersebut sangat fleksibel
 ##### Kekurangan
 - Model Peningkatan Gradien akan terus ditingkatkan untuk meminimalkan semua kesalahan. Ini dapat terlalu menekankan outlier dan menyebabkan overfitting.
 
 ## Evaluation
+|   | Model | MSE     | R2      | RMSE    |
+|---|-------|---------|---------|---------|
+| 1 | GB    | 0.00770 | 0.63776 | 0.08774 |
+| 2 | LGBM  | 0.00511 | 0.75957 | 0.07148 |
+| 3 | RF    | 0.00390 | 0.81661 | 0.06243 |
+| 4 | XGB   | 0.00770 | 0.63776 | 0.08774 |
+| 5 | knn   | 0.00563 | 0.73518 | 0.07502 |
+
+- Semakin kecil nilai RMSE, semakin dekat nilai yang diprediksi dan diamati dengan kata lain prediksi semakin akurat.
+- Nilai Mean Squared Error yang rendah atau nilai mean squared error mendekati nol menunjukkan bahwa hasil peramalan sesuai dengan data aktual dan bisa dijadikan untuk perhitungan peramalan di periode mendatang.
+- Semakin nilai r2 kecil maka artinya komponen error yang besar
+
 Metrik evaluasi yang digunakan adalah:
 ### Mean Squared Error (MSE)
 Mean Squared Error (MSE) adalah Rata-rata Kesalahan kuadrat diantara nilai aktual dan nilai prediksi. Metode Mean Squared Error secara umum digunakan untuk mengecek estimasi berapa nilai kesalahan pada prediksi. Nilai Mean Squared Error yang rendah atau nilai mean squared error mendekati nol menunjukkan bahwa hasil prediksi sesuai dengan data aktual dan bisa dijadikan untuk perhitungan prediksi di periode mendatang. Metode Mean Squared Error biasanya digunakan untuk mengevaluasi metode pengukuran dengan model regressi.
