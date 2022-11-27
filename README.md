@@ -68,7 +68,9 @@ PLU merupakan Price look-up nomor berisi 4-5 digit untuk mengidentifikasian suat
 #### Visualisasi
 Grafik distribusi
 
-![grafik distribusi](https://user-images.githubusercontent.com/118952537/204123329-94350848-9800-493a-acd8-c60f1aef98ec.png)
+![grafokdis](https://user-images.githubusercontent.com/118952537/204130027-2f7bf2ab-a1d2-4897-92c2-f1cf6768ae91.png)
+
+
 
 pada grafik diatas akan membuat kisi sumbu sedemikian rupa sehingga setiap variabel numerik dalam data akan dibagikan ke seluruh sumbu y di satu baris dan sumbu x di satu kolom. Plot diagonal diperlakukan berbeda: plot distribusi univariat digambar untuk menunjukkan distribusi marjinal data di setiap kolom.
 
