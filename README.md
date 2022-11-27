@@ -74,7 +74,8 @@ pada grafik diatas akan membuat kisi sumbu sedemikian rupa sehingga setiap varia
 
 Visualisasi Korelasi Matrix
 
-![korelasi matix](https://user-images.githubusercontent.com/118952537/204123355-c865c45b-b0c9-4adf-a332-06ad0875fc44.png)
+![korelasiikk](https://user-images.githubusercontent.com/118952537/204129350-b02ff015-4b93-48fe-bef3-717a17a94e9c.png)
+
 pada gambar diatas dapat dilihat bahwa setiap elemen mempunyai nilai korelasi yang berbeda. semakin tinggi nilai korelasi (mendekati 1) maka hubungan antara kedua variabel sangat kuat atau jika nilainya 1 maka variabel tersebut sama. Ketika hubungannya semakin erat maka warna akan semakin merah. sebaliknya apabila nilai korelasi (tidak mendekati 1) dan berwarna biru maka kedua variabel tidak saling berhubungan.
 
 ## Data Preparation
@@ -99,6 +100,9 @@ Random Forest = Random Forest dapat digunakan sebagai regresi dengan memperluas 
  
  #### XGBoost
 XGBoostadalah implementasi sumber terbuka yang populer dan efisien dari algoritma pohon yang ditingkatkan gradien. Peningkatan gradien adalah algoritma pembelajaran yang diawasi, yang mencoba memprediksi variabel target secara akurat dengan menggabungkan perkiraan serangkaian model yang lebih sederhana dan lebih lemah. Saat menggunakangradien meningkatkanuntuk regresi, peserta didik yang lemah adalah pohon regresi, dan setiap pohon regresi memetakan titik data input ke salah satu daunnya yang berisi skor berkelanjutan. XGBoost meminimalkan fungsi obyektif yang diatur (L1 dan L2) yang menggabungkan fungsi kehilangan cembung (berdasarkan perbedaan antara output yang diprediksi dan target) dan istilah penalti untuk kompleksitas model (dengan kata lain, fungsi pohon regresi).
+- n_estimators = 100 (Default)
+- subsample = None (Default)
+- max_depth = None (Default)
  ##### Keuntungan
  - Efektif dengan kumpulan data besar. Algoritme pohon seperti XGBoost dan Random Forest tidak memerlukan fitur yang dinormalisasi dan bekerja dengan baik jika datanya nonlinier, nonmonotonik, atau dengan kluster terpisah.
  ##### Kekurangan
@@ -106,6 +110,9 @@ XGBoostadalah implementasi sumber terbuka yang populer dan efisien dari algoritm
  
  #### LGBM
 LightGBM mengimplementasikan algoritma Gradient Boosting Decision Tree (GBDT) konvensional dengan penambahan dua teknik baru: Pengambilan Sampel Satu Sisi Berbasis Gradien (GOSS) dan Bundling Fitur Eksklusif (EFB). Teknik-teknik ini dirancang untuk secara signifikan meningkatkan efisiensi dan skalabilitas GBDT. Algoritma LightGBM berkinerja baik dalam kompetisi Machine Learning karena penanganannya yang kuat dari berbagai jenis data, hubungan, distribusi, dan keragaman hyperparameter yang dapat  disempurnakan.
+- n_estimators = 100 (Default)
+- subsample = None (Default)
+- max_depth = None (Default)
  ##### Keuntungan
  - Kecepatan latihan lebih cepat dan efisiensi lebih tinggi
  - Menggunakan memori yang relatif kecil
@@ -122,6 +129,9 @@ KNN bekerja berdasarkan prinsip bahwa setiap titik data yang berdekatan satu sam
 
 #### Gradient Boosting
 cara kerja algoritma gradient boost adalah membangun satu tree untuk menyesuaikan data, lalu tree berikutnya dibangun untuk mengurangi residual (error).
+- n_estimators = 100 (Default)
+- subsample = None (Default)
+- max_depth = None (Default)
 ##### Keuntungan
 - dapat mengoptimalkan berbagai fungsi kerugian dan menyediakan beberapa opsi penyetelan parameter hiper yang membuat fungsi tersebut sangat fleksibel
 ##### Kekurangan
@@ -151,8 +161,6 @@ R squared merupakan angka yang berkisar antara 0 sampai 1 yang mengindikasikan b
 Jika kita perhatikan rumus R squared dibawah sangat dipengaruhi oleh nilai Y prediksi atau nilai Y dari hasil rumus dengan nilai Y aktual. Kenyataan yang sering muncul adalah nilai R squared akan semakin membaik (nilainya akan terus mendekati nilai 1) jika kita menambah variabel. Semakin banyak jumlah variabel yang menentukan nilai Y prediksi, maka nilai SSR akan semakin besar yang berakibat pada besarnya nilai R squared.
 
 ## Kesimpulan
-![hasil akhir](https://user-images.githubusercontent.com/118952537/204124448-ed5c7c52-886b-4df1-a6be-b61825a52a14.png)
-
 Setelah melalui berbagai tahapan evaluasi dan membandingkan ke-5 algoritma yang digunakan yakni, LGBM, XGBoost, KNN, Gradient Boosting dan Random Forest. Nilai skor terbesar adalah algoritma Random Forest dengan nilai 81% disusul oleh LGBM dengan score 76% kemudian KNN dengan skor 73% dan Gradient Boosting dan XGboost dengan skor 64%
 
 ## Referensi
