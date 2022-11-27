@@ -4,10 +4,10 @@ Alpukat merupakan buah yang bergizi, serbaguna, dan lezat, alpukat telah menjadi
 Buah alpukat tumbuh subur di iklim Mediterania, diproduksi di wilayah tersebut, dan kaya akan asam oleat dan serat
 Alpukat dianggap sebagai salah satu buah tropis utama, karena mengandung vitamin yang larut dalam lemak yang kurang umum di lain buah-buahan, selain tinggi protein, potasium dan tak jenuh asam lemak. Bubur alpukat mengandung kandungan minyak yang bervariasi, dan banyak  digunakan dalam industri farmasi dan kosmetik, dan di produksi minyak komersial yang mirip dengan minyak zaitun[1][2].
 
-Karena alpukat banyak digunakan untuk bahan pangan dan bahan-bahan dasar untuk memproduksi sesuatu produk. nilai permintaan dan penawaran jika seimbang tidak akan terjadi kenaikan harga namun apabila salah satu nilai permintaan dan penawaran tidak seimbang maka akan terjadi kenaikan atau penurunan harga.
+Karena alpukat banyak digunakan untuk bahan pangan dan bahan-bahan dasar untuk memproduksi suatu produk. nilai permintaan dan penawaran jika seimbang tidak akan terjadi kenaikan harga namun apabila salah satu nilai permintaan dan penawaran tidak seimbang maka akan terjadi kenaikan atau penurunan harga.
 sehingga berdasarkan permasalahan tersebut penulis ingin memprediksi harga buah alpukat sehingga para penyedia alpukat dapat menyeimbangkan nilai penawaran dan permintaan.
 ## Business Understanding
-Petani alpukat akan menjual alpukatnya lebih banyak pada daerah yang memiliki nilai permintaan alpukat yang tinggi dan akan menjual alpukatnya lebih seidkit pada daerah yang memiliki permintaan alpukat yang lebih sedikit.
+Petani alpukat akan menjual alpukatnya lebih banyak pada daerah yang memiliki nilai permintaan alpukat yang tinggi dan akan menjual alpukatnya lebih sedikit pada daerah yang memiliki permintaan alpukat yang lebih sedikit.
 ### Problem Statement
 Berdasarkan situasi diatas
 - Bagaimana cara preprocessing pada data harga alpukat yang akan digunakan untuk membuat model yang baik?
@@ -15,18 +15,19 @@ Berdasarkan situasi diatas
 ### Goals
 - Melakukan preprocessing data untuk model machine learning
 - Membandingkan model score terbaik untuk memprediksi harga penjualan alpukat 
-### Solusion Statement
+### Solution Statement
 - Random Forest(RF). Pemilihan metode Random Forest sebagai metode prediksi pada penelitian ini didasari oleh kelebihannya yaitu dapat mengatasi noise dan missing value serta dapat mengatasi data dalam jumlah yang besar. Dan kekurangan pada algoritma Random Forest yaitu interpretasi yang sulit dan membutuhkan tuning model yang tepat untuk data. Cara kerja Random Forest yakni dengan memanggil fungsi RandomForestRegressor() yang telah diimport dari library scikit-learn[3].
 - K-Nearest Neighbor(KNN). Pemilihan metode K-Nearest Neighbor sebagai metode prediksi pada penelitian ini didasari oleh kelebihannya yang mudah dipahami dan diimplementasikan, tangguh terhadap data training sample yang noisy, dan memiliki konsistensi yang kuat. Kekurangannya yakni perlu menentukan parameter k (jumlah tetangga terdekat), sensitif terhadap data outlier. Cara kerja K-Nearest Neighbor yakni dengan memanggil fungsi KNeighborsRegressor() yang telah diimport dari library scikit-learn[4].
-- XGBoost (XGB) adalah pendekatan yang ampuh untuk membangun model regresi yang diawasi. Validitas pernyataan ini dapat disimpulkan dengan mengetahui tentang fungsi objektif (XGBoost) dan basis pembelajarnya. Fungsi tujuan berisi fungsi kerugian dan istilah regularisasi. Ini menceritakan tentang perbedaan antara nilai aktual dan nilai prediksi, yaitu seberapa jauh hasil model dari nilai sebenarnya[5].
-- Gradient Boosting (GB) adalah salah satu algoritme pembelajaran mesin paling populer untuk kumpulan data tabular. Ini cukup kuat untuk menemukan hubungan nonlinear antara target model dan fitur Anda dan memiliki kegunaan yang hebat yang dapat menangani nilai yang hilang, outlier, dan nilai kategorikal kardinalitas tinggi pada fitur Anda tanpa perlakuan khusus[6].
+- XGBoost (XGB) adalah pendekatan yang ampuh untuk membangun model regresi yang diawasi. Validitas pernyataan ini dapat disimpulkan dengan mengetahui tentang fungsi objektif (XGBoost) dan basis pembelajaran. Fungsi tujuan berisi fungsi kerugian dan istilah regularisasi. Ini menceritakan tentang perbedaan antara nilai aktual dan nilai prediksi, yaitu seberapa jauh hasil model dari nilai sebenarnya[5].
+- Gradient Boosting (GB) adalah salah satu algoritma pembelajaran mesin paling populer untuk kumpulan data tabular. Ini cukup kuat untuk menemukan hubungan non linear antara target model dan fitur Anda dan memiliki kegunaan yang hebat yang dapat menangani nilai yang hilang, outlier, dan nilai kategorikal kardinalitas tinggi pada fitur Anda tanpa perlakuan khusus[6].
 - LightGBM adalah kerangka peningkatan gradien yang menggunakan algoritma pembelajaran berbasis pohon. Ini dirancang untuk didistribusikan dan efisien[7].
 ## Data Understanding
-Data yang digunakan adalah data yang ada pada kaggle  https://www.kaggle.com/datasets/neuromusic/avocado-prices
+Data yang digunakan adalah data yang ada pada kaggle [Avocado Prices](https://www.kaggle.com/datasets/neuromusic/avocado-prices)
+
 keterangan columns pada the dataset:
 Date - Tanggal Observasi data
 
-- AveragePrice - Harga rata-rata pada satu buah alpukat dalah mata uang dollar
+- AveragePrice - Harga rata-rata pada satu buah alpukat adalah mata uang dollar
 - type - Konvensional atau organik
 - year - Tahun
 - Region - Daerah observasi
@@ -35,7 +36,7 @@ Date - Tanggal Observasi data
 - 4225 - Total jumlah alpukat dengan PLU 4225 terjual
 - 4770 - Total jumlah alpukat dengan PLU 4770 terjual
 ##### Note
-PLU merupakan Price look-up nomor berisi 4-5 digit untuk mengidentifikasian suatu produk, berguna untuk memudahkan proses check-out dan juga memudahkan inventory control.
+PLU merupakan Price look-up nomor berisi 4-5 digit untuk mengidentifikasikan suatu produk, berguna untuk memudahkan proses check-out dan juga memudahkan inventory control.
 
 | #  | Column       | Non-Null Count | Dtype          |
 |----|--------------|----------------|----------------|
@@ -72,7 +73,7 @@ Grafik distribusi
 
 
 
-pada grafik diatas akan membuat kisi sumbu sedemikian rupa sehingga setiap variabel numerik dalam data akan dibagikan ke seluruh sumbu y di satu baris dan sumbu x di satu kolom. Plot diagonal diperlakukan berbeda: plot distribusi univariat digambar untuk menunjukkan distribusi marjinal data di setiap kolom.
+pada grafik diatas akan membuat kisi sumbu sedemikian rupa sehingga setiap variabel numerik dalam data akan dibagikan ke seluruh sumbu y di satu baris dan sumbu x di satu kolom. Plot diagonal diperlakukan berbeda: plot distribusi univariat digambar untuk menunjukkan distribusi marinal data di setiap kolom.
 
 Visualisasi Korelasi Matrix
 
@@ -82,14 +83,14 @@ pada gambar diatas dapat dilihat bahwa setiap elemen mempunyai nilai korelasi ya
 
 ## Data Preparation
  Teknik data preparation yang digunakan adalah: 
- - MinMaxScaller() dimana ketika menggunakan teknik ini kita harus menghilangkan kolum yang bernilai data type object. merupakan proses scalling yang fungsinya data numeric akan tahan terhadap pencilan data / outliers. MinMaxScaller ini mentransformasi / mengubah data numeric menjadi data numeric yang memiliki rentang 0 - 1
+ - MinMaxScaller() dimana ketika menggunakan teknik ini kita harus menghilangkan kolom yang bernilai data type object. merupakan proses scalling yang fungsinya data numeric akan tahan terhadap pencilan data / outliers. MinMaxScaller ini mentransformasi / mengubah data numeric menjadi data numeric yang memiliki rentang 0 - 1
  - TrainTestSplit() untuk membagi dataset menjadi data latih (train) dan data uji (test) merupakan hal yang harus dilakukan sebelum membuat model. Mempertahankan sebagian data yang ada untuk menguji seberapa baik generalisasi model terhadap data baru. nilai yang digunakan untuk test adalah 0.2 atau 20% sehingga nilai yang digunakan untuk train adalah 0.8 atau 80% sehingga perbandingan rasio train/test adalah 80:20.
 ## Modeling
 
 Pada tahap ini mengembangkan model machine learning dengan lima algoritma, yakni XGBoost, K-Nearest Neighbor, Random Forest, Gradient Boosting, LightGBM. Langkah selanjutnya yakni mengevaluasi performa masing-masing algoritma dan menentukan algoritma mana yang memberikan hasil prediksi terbaik. Langkah pertama dalam proses modeling yakni menyiapkan sebuah DataFrame baru untuk menampung berapa nilai mae-nya yang berfungsi pada proses analisis model.
 
  #### Random Forest (RF)
-Random Forest = Random Forest dapat digunakan sebagai regresi dengan memperluas 'tree' sepenuhnya sehingga setiap daun memiliki tepat satu nilai. Breiman menyarankan untuk membuat regresi random forest dengan cara memperluas pohon secara acak. Kemudian sebuah prediksi secara sederhana mengembalikan variabel respon individual dari distribusi dapat dibangun jika 'forest' cukup besar. Satu peringatan bahwa perkembangan 'tree' sepenuhnya dapat menutupi atau melebihi kapasitas: jika itu terjadi, intervalnya akan sia-sia, seperti prediksi. Hal yang diharapkan adalah sama seperti akurasi dan presisi.
+Random Forest = Random Forest dapat digunakan sebagai regresi dengan memperluas 'tree' sepenuhnya sehingga setiap daun memiliki tepat satu nilai. Breiman menyarankan untuk membuat regresi random forest dengan cara memperluas pohon secara acak. Kemudian sebuah prediksi secara sederhana mengembalikan variabel respon individu dari distribusi dapat dibangun jika 'forest' cukup besar. Satu peringatan bahwa perkembangan 'tree' sepenuhnya dapat menutupi atau melebihi kapasitas: jika itu terjadi, intervalnya akan sia-sia, seperti prediksi. Hal yang diharapkan adalah sama seperti akurasi dan presisi.
 - n_estimators — jumlah pohon keputusan yang akan Anda jalankan dalam model
 - max_depth — ini mengatur kedalaman maksimum yang mungkin dari setiap pohon
 - n_jobs — jumlah tugas yang akan dijalankan secara paralel. -1 berarti menggunakan semua prosesor
@@ -98,15 +99,15 @@ Random Forest = Random Forest dapat digunakan sebagai regresi dengan memperluas 
  - RF dapat menyelesaikan kedua jenis masalah yaitu klasifikasi dan regresi dan melakukan estimasi yang layak di kedua sisi.
  - Memiliki metode yang efektif untuk memperkirakan data yang hilang dan menjaga akurasi ketika sebagian besar data hilang.
  ##### Kekurangan 
- - seperti pendekatan kotak hitam untuk pemodel statistik, kami hanya memiliki sedikit kendali atas apa yang dilakukan model tersebut.
+ - seperti pendekatan kotak hitam untuk pemodelan statistik, kami hanya memiliki sedikit kendali atas apa yang dilakukan model tersebut.
  
  #### XGBoost
-XGBoostadalah implementasi sumber terbuka yang populer dan efisien dari algoritma pohon yang ditingkatkan gradien. Peningkatan gradien adalah algoritma pembelajaran yang diawasi, yang mencoba memprediksi variabel target secara akurat dengan menggabungkan perkiraan serangkaian model yang lebih sederhana dan lebih lemah. Saat menggunakangradien meningkatkanuntuk regresi, peserta didik yang lemah adalah pohon regresi, dan setiap pohon regresi memetakan titik data input ke salah satu daunnya yang berisi skor berkelanjutan. XGBoost meminimalkan fungsi obyektif yang diatur (L1 dan L2) yang menggabungkan fungsi kehilangan cembung (berdasarkan perbedaan antara output yang diprediksi dan target) dan istilah penalti untuk kompleksitas model (dengan kata lain, fungsi pohon regresi).
+XGBoost adalah implementasi sumber terbuka yang populer dan efisien dari algoritma pohon yang ditingkatkan gradien. Peningkatan gradien adalah algoritma pembelajaran yang diawasi, yang mencoba memprediksi variabel target secara akurat dengan menggabungkan perkiraan serangkaian model yang lebih sederhana dan lebih lemah. Saat menggunakan gradien meningkatkan untuk regresi, peserta didik yang lemah adalah pohon regresi, dan setiap pohon regresi memetakan titik data input ke salah satu daunnya yang berisi skor berkelanjutan. XGBoost meminimumkan fungsi objektif yang diatur (L1 dan L2) yang menggabungkan fungsi kehilangan cembung (berdasarkan perbedaan antara output yang diprediksi dan target) dan istilah penalti untuk kompleksitas model (dengan kata lain, fungsi pohon regresi).
 - n_estimators = 100 (Default)
 - subsample = None (Default)
 - max_depth = None (Default)
  ##### Keuntungan
- - Efektif dengan kumpulan data besar. Algoritme pohon seperti XGBoost dan Random Forest tidak memerlukan fitur yang dinormalisasi dan bekerja dengan baik jika datanya nonlinier, nonmonotonik, atau dengan kluster terpisah.
+ - Efektif dengan kumpulan data besar. Algoritma pohon seperti XGBoost dan Random Forest tidak memerlukan fitur yang dinormalisasi dan bekerja dengan baik jika datanya non linier, non monotonik, atau dengan kluster terpisah.
  ##### Kekurangan
  - Tidak bekerja dengan baik apabila data tidak terstruktur
  
@@ -152,12 +153,12 @@ cara kerja algoritma gradient boost adalah membangun satu tree untuk menyesuaika
 - Nilai Mean Squared Error yang rendah atau nilai mean squared error mendekati nol menunjukkan bahwa hasil peramalan sesuai dengan data aktual dan bisa dijadikan untuk perhitungan peramalan di periode mendatang.
 - Semakin nilai r2 kecil maka artinya komponen error yang besar
 
-Metrik evaluasi yang digunakan adalah:
+Matrik evaluasi yang digunakan adalah:
 ### Mean Squared Error (MSE)
-Mean Squared Error (MSE) adalah Rata-rata Kesalahan kuadrat diantara nilai aktual dan nilai prediksi. Metode Mean Squared Error secara umum digunakan untuk mengecek estimasi berapa nilai kesalahan pada prediksi. Nilai Mean Squared Error yang rendah atau nilai mean squared error mendekati nol menunjukkan bahwa hasil prediksi sesuai dengan data aktual dan bisa dijadikan untuk perhitungan prediksi di periode mendatang. Metode Mean Squared Error biasanya digunakan untuk mengevaluasi metode pengukuran dengan model regressi.
+Mean Squared Error (MSE) adalah Rata-rata Kesalahan kuadrat diantara nilai aktual dan nilai prediksi. Metode Mean Squared Error secara umum digunakan untuk mengecek estimasi berapa nilai kesalahan pada prediksi. Nilai Mean Squared Error yang rendah atau nilai mean squared error mendekati nol menunjukkan bahwa hasil prediksi sesuai dengan data aktual dan bisa dijadikan untuk perhitungan prediksi di periode mendatang. Metode Mean Squared Error biasanya digunakan untuk mengevaluasi metode pengukuran dengan model regresi.
 ### Root  Mean Squared Error (RMSE)
 Root Mean Squared Error (RMSE) merupakan salah satu cara untuk mengevaluasi model regresi dengan mengukur tingkat akurasi hasil perkiraan suatu model. RMSE dihitung dengan mengkuadratkan error (prediksi – observasi) dibagi dengan jumlah data (= rata-rata), lalu diakarkan.
-Nilai RMSE rendah menunjukkan bahwa variasi nilai yang dihasilkan oleh suatu model prakiraan mendekati variasi nilai obeservasinya. RMSE menghitung seberapa berbedanya seperangkat nilai. Semakin kecil nilai RMSE, semakin dekat nilai yang diprediksi dan diamati.
+Nilai RMSE rendah menunjukkan bahwa variasi nilai yang dihasilkan oleh suatu model prakiraan mendekati variasi nilai observasinya. RMSE menghitung seberapa berbedanya seperangkat nilai. Semakin kecil nilai RMSE, semakin dekat nilai yang diprediksi dan diamati.
 ### R2 Score
 R squared merupakan angka yang berkisar antara 0 sampai 1 yang mengindikasikan besarnya kombinasi variabel independen secara bersama – sama mempengaruhi nilai variabel dependen. Semakin mendekati angka satu, model yang dikeluarkan oleh regresi tersebut akan semakin baik.
 Jika kita perhatikan rumus R squared dibawah sangat dipengaruhi oleh nilai Y prediksi atau nilai Y dari hasil rumus dengan nilai Y aktual. Kenyataan yang sering muncul adalah nilai R squared akan semakin membaik (nilainya akan terus mendekati nilai 1) jika kita menambah variabel. Semakin banyak jumlah variabel yang menentukan nilai Y prediksi, maka nilai SSR akan semakin besar yang berakibat pada besarnya nilai R squared.
